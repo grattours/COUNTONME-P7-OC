@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.43"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CountOnMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="1+1=2" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="CT0-fb-Raf">
+                                <rect key="frame" x="15" y="20" width="384" height="203.66666666666666"/>
+                                <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                </variation>
+                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aiF-me-Far">
+                                <rect key="frame" x="15" y="238.66666666666666" width="384" height="482.33333333333337"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GZQ-ZL-Chx">
+                                        <rect key="frame" x="0.0" y="0.0" width="88.666666666666671" height="482.33333333333331"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="293-nl-bP4">
+                                                <rect key="frame" x="0.0" y="0.0" width="88.666666666666671" height="88.333333333333329"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                                <state key="normal" title="C">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="resetCalculation" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yxs-fX-uUe"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uw-jf-qlX" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="98.333333333333343" width="88.666666666666671" height="88.666666666666657"/>
+                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="6uw-jf-qlX" secondAttribute="height" id="QEB-V2-VW1"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title="1">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <variation key="heightClass=compact">
+                                                    <mask key="constraints">
+                                                        <exclude reference="QEB-V2-VW1"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="tappedNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VlG-Fc-IDc"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86l-DO-J8m" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="197.00000000000003" width="88.666666666666671" height="88.333333333333343"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title="4">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K2t-lu-cq7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKJ-lP-BeQ" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="295.33333333333337" width="88.666666666666671" height="88.666666666666686"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title="7">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="07X-hV-KgE"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgJ-QU-2gW" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="394" width="88.666666666666671" height="88.333333333333314"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title="0">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="40K-xM-xUp"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XdB-qG-jU9">
+                                        <rect key="frame" x="98.666666666666686" y="0.0" width="88.333333333333314" height="482.33333333333331"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gb-Xw-SYF">
+                                                <rect key="frame" x="0.0" y="0.0" width="88.333333333333329" height="88.333333333333329"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZA-hS-XZt" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="98.333333333333343" width="88.333333333333329" height="88.666666666666657"/>
+                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="nZA-hS-XZt" secondAttribute="height" id="HEN-XS-atl"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title="2">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <variation key="heightClass=compact">
+                                                    <mask key="constraints">
+                                                        <exclude reference="HEN-XS-atl"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="tappedNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cvX-1d-gOO"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p3X-cI-gqf" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="197.00000000000003" width="88.333333333333329" height="88.333333333333343"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title="5">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="URP-Qn-FLg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5iN-WA-tqI" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="295.33333333333337" width="88.333333333333329" height="88.666666666666686"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title="8">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Xu-46-Fky"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhH-U6-ChX" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="394" width="88.333333333333329" height="88.333333333333314"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="e5M-ww-B3O">
+                                        <rect key="frame" x="197" y="0.0" width="88.666666666666686" height="482.33333333333331"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQu-dX-Kvg">
+                                                <rect key="frame" x="0.0" y="0.0" width="88.666666666666671" height="88.333333333333329"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdG-Q6-4Mj" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="98.333333333333343" width="88.666666666666671" height="88.666666666666657"/>
+                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="fdG-Q6-4Mj" secondAttribute="height" id="KRe-cV-PEu"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title="3">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <variation key="heightClass=compact">
+                                                    <mask key="constraints">
+                                                        <exclude reference="KRe-cV-PEu"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="tappedNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="str-dQ-oUB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zx3-qU-jRo" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="197.00000000000003" width="88.666666666666671" height="88.333333333333343"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title="6">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jBX-on-bFs"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57K-hd-XBz" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="295.33333333333337" width="88.666666666666671" height="88.666666666666686"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title="9">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedNumberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2CR-oX-X9I"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFo-X0-H54" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="394" width="88.666666666666671" height="88.333333333333314"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <state key="normal" title=",">
+                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JCS-G8-93l" userLabel="operators Stack View">
+                                        <rect key="frame" x="295.66666666666669" y="0.0" width="88.333333333333314" height="482.33333333333331"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xo0-1W-mmz">
+                                                <rect key="frame" x="0.0" y="0.0" width="88.333333333333329" height="88.333333333333329"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <state key="normal" title="÷">
+                                                    <color key="titleColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9t-JB-KHx">
+                                                <rect key="frame" x="0.0" y="98.333333333333343" width="88.333333333333329" height="88.666666666666657"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="u9t-JB-KHx" secondAttribute="height" id="EKV-rt-idL"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <state key="normal" title="x">
+                                                    <color key="titleColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <variation key="heightClass=compact">
+                                                    <mask key="constraints">
+                                                        <exclude reference="EKV-rt-idL"/>
+                                                    </mask>
+                                                </variation>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piv-FT-wps">
+                                                <rect key="frame" x="0.0" y="197.00000000000003" width="88.333333333333329" height="88.333333333333343"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <state key="normal" title="+">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedOperatorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rSO-4L-PVg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1md-mv-IxN">
+                                                <rect key="frame" x="0.0" y="295.33333333333337" width="88.333333333333329" height="88.666666666666686"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <state key="normal" title="-">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedOperatorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EZC-jF-kIU"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9e-qZ-ZAT">
+                                                <rect key="frame" x="0.0" y="394" width="88.333333333333329" height="88.333333333333314"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <state key="normal" title="=">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="equal" destination="BYZ-38-t0r" eventType="touchUpInside" id="rHF-7s-zDj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="e5M-ww-B3O" firstAttribute="width" secondItem="GZQ-ZL-Chx" secondAttribute="width" id="0bw-2j-Nht"/>
+                                    <constraint firstItem="e5M-ww-B3O" firstAttribute="width" secondItem="GZQ-ZL-Chx" secondAttribute="width" id="64S-VU-2ak"/>
+                                    <constraint firstItem="XdB-qG-jU9" firstAttribute="width" secondItem="GZQ-ZL-Chx" secondAttribute="width" id="7fo-Ij-s6K"/>
+                                    <constraint firstItem="e5M-ww-B3O" firstAttribute="height" secondItem="GZQ-ZL-Chx" secondAttribute="height" id="9Sr-RB-0v3"/>
+                                    <constraint firstItem="e5M-ww-B3O" firstAttribute="height" secondItem="GZQ-ZL-Chx" secondAttribute="height" id="TMd-Vr-w82"/>
+                                    <constraint firstItem="XdB-qG-jU9" firstAttribute="height" secondItem="GZQ-ZL-Chx" secondAttribute="height" id="h9M-22-NTx"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7fo-Ij-s6K"/>
+                                        <exclude reference="h9M-22-NTx"/>
+                                        <exclude reference="0bw-2j-Nht"/>
+                                        <exclude reference="64S-VU-2ak"/>
+                                        <exclude reference="9Sr-RB-0v3"/>
+                                        <exclude reference="TMd-Vr-w82"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="7fo-Ij-s6K"/>
+                                        <include reference="h9M-22-NTx"/>
+                                        <include reference="0bw-2j-Nht"/>
+                                        <include reference="64S-VU-2ak"/>
+                                        <include reference="9Sr-RB-0v3"/>
+                                        <exclude reference="TMd-Vr-w82"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstItem="CT0-fb-Raf" firstAttribute="trailing" secondItem="aiF-me-Far" secondAttribute="trailing" id="5tM-CW-M7j"/>
+                            <constraint firstItem="CT0-fb-Raf" firstAttribute="leading" secondItem="aiF-me-Far" secondAttribute="leading" id="Rou-eY-XUQ"/>
+                            <constraint firstItem="aiF-me-Far" firstAttribute="top" secondItem="CT0-fb-Raf" secondAttribute="bottom" constant="10" id="X9E-iG-KRX"/>
+                            <constraint firstItem="CT0-fb-Raf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="XnD-Yc-Fla"/>
+                            <constraint firstItem="CT0-fb-Raf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Zh3-Me-LqA"/>
+                            <constraint firstItem="aiF-me-Far" firstAttribute="top" secondItem="CT0-fb-Raf" secondAttribute="bottom" constant="15" id="dFI-QZ-44a"/>
+                            <constraint firstAttribute="trailing" secondItem="aiF-me-Far" secondAttribute="trailing" constant="15" id="hsb-V6-q4x"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aiF-me-Far" secondAttribute="bottom" constant="15" id="i8I-Tc-Ixa"/>
+                            <constraint firstItem="CT0-fb-Raf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="jlj-8V-HCL"/>
+                            <constraint firstAttribute="trailing" secondItem="CT0-fb-Raf" secondAttribute="trailing" constant="15" id="jzO-NC-8dn"/>
+                            <constraint firstItem="aiF-me-Far" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="lt0-Jg-XRU"/>
+                            <constraint firstItem="aiF-me-Far" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="60" id="pFw-V8-8cs">
+                                <variation key="heightClass=compact" constant="80"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="XnD-Yc-Fla"/>
+                                <exclude reference="jlj-8V-HCL"/>
+                                <exclude reference="jzO-NC-8dn"/>
+                                <exclude reference="X9E-iG-KRX"/>
+                                <exclude reference="pFw-V8-8cs"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="5tM-CW-M7j"/>
+                                <exclude reference="Rou-eY-XUQ"/>
+                                <include reference="XnD-Yc-Fla"/>
+                                <exclude reference="Zh3-Me-LqA"/>
+                                <include reference="jlj-8V-HCL"/>
+                                <include reference="jzO-NC-8dn"/>
+                                <include reference="X9E-iG-KRX"/>
+                                <exclude reference="dFI-QZ-44a"/>
+                                <include reference="pFw-V8-8cs"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="operatorsButtons" destination="D9e-qZ-ZAT" id="3cr-L1-X8f"/>
+                        <outlet property="textView" destination="CT0-fb-Raf" id="Xeg-bt-oOS"/>
+                        <outletCollection property="numberButtons" destination="GgJ-QU-2gW" collectionClass="NSMutableArray" id="9Qk-lc-geE"/>
+                        <outletCollection property="numberButtons" destination="6uw-jf-qlX" collectionClass="NSMutableArray" id="fGs-va-gYX"/>
+                        <outletCollection property="numberButtons" destination="nZA-hS-XZt" collectionClass="NSMutableArray" id="igp-DG-BR5"/>
+                        <outletCollection property="numberButtons" destination="fdG-Q6-4Mj" collectionClass="NSMutableArray" id="TbS-xQ-si6"/>
+                        <outletCollection property="numberButtons" destination="86l-DO-J8m" collectionClass="NSMutableArray" id="3hi-C9-gGU"/>
+                        <outletCollection property="numberButtons" destination="p3X-cI-gqf" collectionClass="NSMutableArray" id="nJ6-CU-tEG"/>
+                        <outletCollection property="numberButtons" destination="zx3-qU-jRo" collectionClass="NSMutableArray" id="lIQ-8b-YVE"/>
+                        <outletCollection property="numberButtons" destination="cKJ-lP-BeQ" collectionClass="NSMutableArray" id="sID-52-rte"/>
+                        <outletCollection property="numberButtons" destination="5iN-WA-tqI" collectionClass="NSMutableArray" id="Uum-Ms-mwY"/>
+                        <outletCollection property="numberButtons" destination="57K-hd-XBz" collectionClass="NSMutableArray" id="TOZ-GD-KwV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304.4977511244378" y="384.80000000000001"/>
+        </scene>
+    </scenes>
+</document>
