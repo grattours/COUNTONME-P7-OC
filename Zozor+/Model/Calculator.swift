@@ -31,7 +31,7 @@ class Calculator {
     }
 
 // concaténation des chiffres pour en faire des nombres
-    func addNewNumber(_ newNumber: Int) {
+    func addNumber(_ newNumber: Int) {
         print("newNumber : \(newNumber)" )
         if let stringNumber = stringNumbers.last {
             var stringNumberMutable = stringNumber
@@ -39,9 +39,13 @@ class Calculator {
             stringNumbers[stringNumbers.count-1] = stringNumberMutable
         }
     }
-
+    
+    func addOperator(_ newOperator: String) {
+        operators.append(newOperator)
+        stringNumbers.append("")
+    }
 //
-    func calculateTotal()-> Int {
+    func calculateTotal() -> Int {
         var total = 0
         for (i, stringNumber) in stringNumbers.enumerated() {
             if let number = Int(stringNumber) {
@@ -54,11 +58,20 @@ class Calculator {
             }
         }
         clear()
+        print("operators.count=\(operators.count)")
+        print("stringNumbers.count=\(stringNumbers.count)")
+        print("stringNumbers.last=\(String(describing: stringNumbers.last))")
         return total
     }
 
-//
+// gérer ici la priorité, avant calculateTotal()
+// avec un tableau tmp
+// func reduceExpression
     func getTotal() -> String {
+        print("getTotal")
+        print(stringNumbers)
+        print("getTotal")
+        print(operators)
         let total = calculateTotal()
         return String(total)
     }

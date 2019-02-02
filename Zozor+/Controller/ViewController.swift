@@ -13,16 +13,55 @@ import UIKit
 class ViewController: UIViewController {
 
     // MARK: - Outlets
-
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     @IBOutlet weak var operatorsButtons: UIButton!
     
-//    // MARK: - Properties
-    
+    // MARK: - Properties
     let calculator = Calculator()
-    
-    var isExpressionCorrect: Bool {
+    var isExpressionCorrect: Bool { return checkExpression() }
+    var canAddOperator: Bool { return checkOperator() }
+
+    // MARK: - Action
+    @IBAction func resetCalculation() {
+        textView.text = ""
+        print("resetCalulation")
+        calculator.stringNumbers = [String()]
+    }
+// action si un bouton de chiffre est cliqué
+    @IBAction func tappedNumberButton(_ sender: UIButton) {
+        print(numberButtons.count)
+        for (i, numberButton) in numberButtons.enumerated() {
+            if sender == numberButton {
+                print("indice i = \(i)")
+                calculator.addNumber(i)
+                updateDisplay()
+            }
+        }
+        print("tag du bouton : \(sender.tag)")
+    }
+ // action si un bouton opérateur est cliqué + -
+    @IBAction func tappedOperatorButton(_ sender: UIButton) {
+        if canAddOperator {
+           print("can add")
+//            calculator.operators.append(sender.titleLabel!.text ?? "")
+//            calculator.stringNumbers.append("")
+            calculator.addOperator(sender.titleLabel!.text ?? "")
+        }
+        updateDisplay()
+    }
+// action si le signe = est sélectionné
+    @IBAction func equal() {
+        if isExpressionCorrect {
+            let total = calculator.getTotal()
+            textView.text = textView.text + "=\(total)"
+//        let total = calculator.getTotal()
+//        textView.text = textView.text + "=\(total)"
+        }
+    }
+// renvoie si l'expression est correct ou pas
+// isExpressionCorrect
+    fileprivate func checkExpression() -> Bool {
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
                 if calculator.stringNumbers.count == 1 {
@@ -39,9 +78,9 @@ class ViewController: UIViewController {
         }
         return true
     }
-//
-    var canAddOperator: Bool {
-        print("canAddOperator")
+   
+    fileprivate func checkOperator() -> Bool {
+        print("checkOperator")
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
                 let alertVC = UIAlertController(title: "Zéro!", message: "Expression incorrecte !", preferredStyle: .alert)
@@ -52,39 +91,7 @@ class ViewController: UIViewController {
         }
         return true
     }
-
-    // MARK: - Action
-    @IBAction func resetCalculation() {
-        textView.text = ""
-        print("resetCalulation")
-        calculator.stringNumbers = [String()]
-    }
     
-    
-    @IBAction func tappedNumberButton(_ sender: UIButton) {
-        print(numberButtons.count)
-        for (i, numberButton) in numberButtons.enumerated() {
-            if sender == numberButton {
-                print("indice i = \(i)")
-                calculator.addNewNumber(i)
-                updateDisplay()
-            }
-        }
-        print("tag du bouton : \(sender.tag)")
-    }
-    @IBAction func tappedOperatorButton(_ sender: UIButton) {
-        if canAddOperator {
-           print("can add")
-            calculator.operators.append(sender.titleLabel!.text ?? "")
-            calculator.stringNumbers.append("")
-        }
-    }
-//
-    @IBAction func equal() {
-        let total = calculator.getTotal()
-        textView.text = textView.text + "=\(total)"
-    }
-
     func updateDisplay() {
         textView.text = calculator.getTextToDisplay()
     }

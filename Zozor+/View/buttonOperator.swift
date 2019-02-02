@@ -1,15 +1,15 @@
 //
-//  buttonNumber.swift
+//  buttonOperator.swift
 //  CountOnMe
 //
-//  Created by Luc Derosne on 26/01/2019.
+//  Created by Luc Derosne on 02/02/2019.
 //  Copyright © 2019 Ambroise Collon. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class NumberButton: UIButton {
+class OperatorButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,17 +22,17 @@ class NumberButton: UIButton {
     }
     
     func setup() {
-// ronds
-//        layer.cornerRadius = frame.size.width / 2
-//        layer.masksToBounds = true
-// coins arrondis
-        tintColor = UIColor.white
-        
-        backgroundColor = UIColor.lightGray
+        // ronds
+        //        layer.cornerRadius = frame.size.width / 2
+        //        layer.masksToBounds = true
+        // coins arrondis
+        // tintColor = UIColor.white
+//        backgroundColor = UIColor.lightGray
         titleLabel?.textColor = .white
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)
+        
         layer.cornerRadius = 10
-        layer.shadowColor = UIColor.darkGray.cgColor
+//        layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowOffset = CGSize(width: 3, height: 3)
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 3
