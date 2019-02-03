@@ -19,36 +19,43 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     let calculator = Calculator()
-    var isExpressionCorrect: Bool { return checkExpression() }
-    var canAddOperator: Bool { return checkOperator() }
+    var isExpressionCorrect: Bool { return checkExpression() }  // vérif quand = cliqué
+    var canAddOperator: Bool { return checkOperator() } // vérif quand opérateur cliqué
 
     // MARK: - Action
     @IBAction func resetCalculation() {
         textView.text = ""
-        print("resetCalulation")
+ //       print("resetCalulation")
         calculator.stringNumbers = [String()]
     }
 // action si un bouton de chiffre est cliqué
     @IBAction func tappedNumberButton(_ sender: UIButton) {
-        print(numberButtons.count)
-        for (i, numberButton) in numberButtons.enumerated() {
-            if sender == numberButton {
-                print("indice i = \(i)")
-                calculator.addNumber(i)
-                updateDisplay()
+//        print(numberButtons.count)
+        
+            for (i, numberButton) in numberButtons.enumerated() {
+                if sender == numberButton {
+     //               print("indice i = \(i)")
+                    calculator.addNumber(i)
+                    updateDisplay()
+                }
             }
-        }
-        print("tag du bouton : \(sender.tag)")
+            
+        
+//        print("tag du bouton : \(sender.tag)")
     }
  // action si un bouton opérateur est cliqué + -
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
+        print("operateur \(sender.tag)")
+        if isExpressionCorrect {
         if canAddOperator {
-           print("can add")
+           print("canAddOperator")
 //            calculator.operators.append(sender.titleLabel!.text ?? "")
 //            calculator.stringNumbers.append("")
             calculator.addOperator(sender.titleLabel!.text ?? "")
         }
         updateDisplay()
+        }
+        
     }
 // action si le signe = est sélectionné
     @IBAction func equal() {
@@ -62,6 +69,7 @@ class ViewController: UIViewController {
 // renvoie si l'expression est correct ou pas
 // isExpressionCorrect
     fileprivate func checkExpression() -> Bool {
+        print("checkExpression")
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
                 if calculator.stringNumbers.count == 1 {
@@ -74,6 +82,15 @@ class ViewController: UIViewController {
                     self.present(alertVC, animated: true, completion: nil)
                 }
                 return false
+            } else { // non vide et division par zéro
+                print("Division par zéro ?")
+                if stringNumber == "0" && calculator.operators.last == "/" {
+                    print ("Divide by zero")
+                    let alertVC = UIAlertController(title: "Erreur !", message: "Division par zéro impossible !", preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alertVC, animated: true, completion: nil)
+                    return false
+                }
             }
         }
         return true

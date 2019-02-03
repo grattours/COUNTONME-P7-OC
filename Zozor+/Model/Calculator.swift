@@ -32,7 +32,7 @@ class Calculator {
 
 // concaténation des chiffres pour en faire des nombres
     func addNumber(_ newNumber: Int) {
-        print("newNumber : \(newNumber)" )
+//        print("newNumber : \(newNumber)" )
         if let stringNumber = stringNumbers.last {
             var stringNumberMutable = stringNumber
             stringNumberMutable += "\(newNumber)"
@@ -41,15 +41,16 @@ class Calculator {
     }
     
     func addOperator(_ newOperator: String) {
-        operators.append(newOperator)
+        var newOperatorMutable = newOperator
+        if newOperatorMutable == "÷" { newOperatorMutable = "/"}
+        operators.append(newOperatorMutable)
         stringNumbers.append("")
     }
-//
+//  on ne calcule que des + et - puisque l'expression est réduite à ces opérations la.
     func calculateTotal() -> Int {
         var total = 0
         for (i, stringNumber) in stringNumbers.enumerated() {
             if let number = Int(stringNumber) {
-                // faire un switch avec les opérateur si X et /
                 if operators[i] == "+" {
                     total += number
                 } else if operators[i] == "-" {
@@ -58,24 +59,66 @@ class Calculator {
             }
         }
         clear()
-        print("operators.count=\(operators.count)")
-        print("stringNumbers.count=\(stringNumbers.count)")
-        print("stringNumbers.last=\(String(describing: stringNumbers.last))")
+//        print("operators.count=\(operators.count)")
+//        print("stringNumbers.count=\(stringNumbers.count)")
+//        print("stringNumbers.last=\(String(describing: stringNumbers.last))")
         return total
     }
 
-// gérer ici la priorité, avant calculateTotal()
-// avec un tableau tmp
-// func reduceExpression
+    
     func getTotal() -> String {
-        print("getTotal")
-        print(stringNumbers)
-        print("getTotal")
-        print(operators)
+//        print("appel reduceExpression")
+        reduceExpression()
+//        print("getTotal")
+//        print(stringNumbers)
+//        print("getTotal")
+//        print(operators)
         let total = calculateTotal()
+        print("total getTotal = \(total)")
         return String(total)
     }
     
+    // priorités on reduit l'expression en remplaçant les opérations X et /
+    // en partant de la gauche. on remplace le résultat dans le tableau des nombres[]
+    // on supprime les opérateurs /  et * du tableau tmpOperator[]
+    fileprivate func reduceExpression() {
+        var tmpStringNumbers = stringNumbers
+        var tmpOperators = operators
+        print("nombres et opérateurs d'origine : ")
+        print(tmpStringNumbers)
+        print(tmpOperators)
+        while  tmpOperators.contains("x") || tmpOperators.contains("/") {
+//            print("opération x ou /")
+            let indexTmpOperator = tmpOperators.firstIndex (where: { $0 == "x" || $0 == "/"})
+            let tmpOperator = tmpOperators[indexTmpOperator!]
+            let tmpOperande1 = Int(tmpStringNumbers[indexTmpOperator! - 1])
+            let tmpOperande2 = Int(tmpStringNumbers[indexTmpOperator!])
+            print("opération à remplacer :")
+            
+            // print(tmpStringNumbers[indexTmpOperator!])
+            // print("resultat à remplacer :")
+            var tmpResult = 0
+            if tmpOperator == "x" {
+                 tmpResult = tmpOperande1! * tmpOperande2!
+                // print("mult: \(tmpResult)")
+            } else {
+                 tmpResult = tmpOperande1! / tmpOperande2!
+                // print("div: \(tmpResult)")
+            }
+            print("\(tmpOperande1!)\(tmpOperator)\(tmpOperande2!) => \(tmpResult)")
+            // print("Result =\(tmpResult)")
+            tmpOperators.remove(at: indexTmpOperator!)
+            
+            tmpStringNumbers[indexTmpOperator! - 1] = "\(tmpResult)"
+            tmpStringNumbers.remove(at: indexTmpOperator!)
+            // print("opération après reduction)\(tmpOperators)")
+            print("nombres et opérateurs reduit : ")
+            print(tmpStringNumbers)
+            print(tmpOperators)
+            stringNumbers = tmpStringNumbers
+            operators = tmpOperators
+        }
+    }
     func clear() {
         stringNumbers = [String()]
         operators = ["+"]
