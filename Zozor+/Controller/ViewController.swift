@@ -21,7 +21,8 @@ class ViewController: UIViewController {
     let calculator = Calculator()
     var isExpressionCorrect: Bool { return checkExpression() }  // vérif quand = cliqué
     var canAddOperator: Bool { return checkOperator() } // vérif quand opérateur cliqué
-
+    // let point = "."
+    
     // MARK: - Action
     @IBAction func resetCalculation() {
         textView.text = ""
@@ -66,6 +67,14 @@ class ViewController: UIViewController {
 //        textView.text = textView.text + "=\(total)"
         }
     }
+    
+// ajout des nombres décimaux
+    @IBAction func tappedPointButton(_ sender: UIButton) {
+        print("bouton point")
+        calculator.addPoint()
+        updateDisplay()
+    }
+
 // renvoie si l'expression est correct ou pas
 // isExpressionCorrect
     fileprivate func checkExpression() -> Bool {
@@ -84,7 +93,7 @@ class ViewController: UIViewController {
                 return false
             } else { // non vide et division par zéro
                 print("Division par zéro ?")
-                if stringNumber == "0" && calculator.operators.last == "/" {
+                if stringNumber == "0" && calculator.operators.last == "÷" {
                     print ("Divide by zero")
                     let alertVC = UIAlertController(title: "Erreur !", message: "Division par zéro impossible !", preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))

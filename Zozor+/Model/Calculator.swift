@@ -14,6 +14,8 @@ class Calculator {
     var stringNumbers: [String] = [String()]
     var operators: [String] = ["+"]
     var index = 0
+    let point = "."
+
     
     // reconstitue le text de l'expression avec les nombres et les opérateurs
     func getTextToDisplay() -> String {
@@ -30,6 +32,26 @@ class Calculator {
         return text
     }
 
+// ajout du signeDecimal
+    func addPoint() {
+//        if let stringNumber = stringNumbers.last, point.range(of: stringNumber) == nil {
+//            addNumericalEntry(stringNumber, point)
+//        }
+        let stringNumber = stringNumbers.last
+        var stringNumberDecimal = stringNumber
+        stringNumberDecimal = stringNumberDecimal! + "."
+        stringNumbers[stringNumbers.count-1] = stringNumberDecimal!
+        print("ajout point")
+        print(stringNumbers)
+    }
+//
+//  Add an entry to a number
+//    private func addNumericalEntry(_ stringNumber: String, _ newNumericalEntry: String) {
+//        var stringNumberMutable = stringNumber
+//        stringNumberMutable += newNumericalEntry
+//        stringNumbers[stringNumbers.count-1] = stringNumberMutable
+//    }
+
 // concaténation des chiffres pour en faire des nombres
     func addNumber(_ newNumber: Int) {
 //        print("newNumber : \(newNumber)" )
@@ -42,15 +64,19 @@ class Calculator {
     
     func addOperator(_ newOperator: String) {
         var newOperatorMutable = newOperator
-        if newOperatorMutable == "÷" { newOperatorMutable = "/"}
+        if newOperatorMutable == "÷" { newOperatorMutable = "÷"}
         operators.append(newOperatorMutable)
         stringNumbers.append("")
     }
 //  on ne calcule que des + et - puisque l'expression est réduite à ces opérations la.
-    func calculateTotal() -> Int {
-        var total = 0
+    func calculateTotal() -> Float {
+        var total: Float = 0
+        print("calculateTotal")
+        print(stringNumbers)
         for (i, stringNumber) in stringNumbers.enumerated() {
-            if let number = Int(stringNumber) {
+            if let number = Float(stringNumber) {
+                print("number \(number)")
+                print("operators[i] \(operators[i])")
                 if operators[i] == "+" {
                     total += number
                 } else if operators[i] == "-" {
@@ -62,20 +88,26 @@ class Calculator {
 //        print("operators.count=\(operators.count)")
 //        print("stringNumbers.count=\(stringNumbers.count)")
 //        print("stringNumbers.last=\(String(describing: stringNumbers.last))")
+//        return total
         return total
+        // formatter.string(from: total as NSNumber)
     }
-
     
     func getTotal() -> String {
 //        print("appel reduceExpression")
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
         reduceExpression()
 //        print("getTotal")
 //        print(stringNumbers)
 //        print("getTotal")
 //        print(operators)
-        let total = calculateTotal()
-        print("total getTotal = \(total)")
-        return String(total)
+        let total = formatter.string(from: NSNumber(value: calculateTotal()))
+        print("total getTotal = \(String(describing: total))")
+        // return String(formatter.string(from: as NSNumber))
+        return String(total!)
+        // formatter.string(from: as NSNumber)
     }
     
     // priorités on reduit l'expression en remplaçant les opérations X et /
@@ -87,22 +119,26 @@ class Calculator {
         print("nombres et opérateurs d'origine : ")
         print(tmpStringNumbers)
         print(tmpOperators)
-        while  tmpOperators.contains("x") || tmpOperators.contains("/") {
-//            print("opération x ou /")
-            let indexTmpOperator = tmpOperators.firstIndex (where: { $0 == "x" || $0 == "/"})
+        while tmpOperators.contains("x") || tmpOperators.contains("÷") {
+//            print("opération x ou ÷")
+            let indexTmpOperator = tmpOperators.firstIndex (where: { $0 == "x" || $0 == "÷"})
             let tmpOperator = tmpOperators[indexTmpOperator!]
-            let tmpOperande1 = Int(tmpStringNumbers[indexTmpOperator! - 1])
-            let tmpOperande2 = Int(tmpStringNumbers[indexTmpOperator!])
+            let tmpOperande1 = Float(tmpStringNumbers[indexTmpOperator! - 1])
+            let tmpOperande2 = Float(tmpStringNumbers[indexTmpOperator!])
+            print("tmpOperande1")
+            print(tmpOperande1!)
+            print("tmpOperande2")
+            print(tmpOperande2!)
             print("opération à remplacer :")
             
             // print(tmpStringNumbers[indexTmpOperator!])
             // print("resultat à remplacer :")
-            var tmpResult = 0
+            var tmpResult: Float = 0
             if tmpOperator == "x" {
-                 tmpResult = tmpOperande1! * tmpOperande2!
+                tmpResult = Float(tmpOperande1! * tmpOperande2!)
                 // print("mult: \(tmpResult)")
             } else {
-                 tmpResult = tmpOperande1! / tmpOperande2!
+                tmpResult = Float(tmpOperande1! / tmpOperande2!)
                 // print("div: \(tmpResult)")
             }
             print("\(tmpOperande1!)\(tmpOperator)\(tmpOperande2!) => \(tmpResult)")
