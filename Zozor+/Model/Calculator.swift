@@ -16,7 +16,7 @@ class Calculator {
     var index = 0
     let point = "."
 
-    // reconstitue le text de l'expression avec les nombres et les opérateurs
+    // reconstructs the text of the expression with numbers and operators
     func getTextToDisplay() -> String {
         var text = ""
         for (i, stringNumber) in stringNumbers.enumerated() {
@@ -30,14 +30,14 @@ class Calculator {
         return text
     }
 
-// ajout du signeDecimal
+// adding the Decimal point
     func addPoint() {
         let stringNumber = stringNumbers.last
         var stringNumberDecimal = stringNumber
         stringNumberDecimal = stringNumberDecimal! + "."
         stringNumbers[stringNumbers.count-1] = stringNumberDecimal!
     }
-    // ajout du nombre avec "²" dans le tableau des nombres
+    // adding the number with "²" in the number table
     func addSquare() {
         let stringNumberS = stringNumbers.last!
         var stringNumberSquare = stringNumberS
@@ -45,14 +45,14 @@ class Calculator {
         stringNumbers[stringNumbers.count-1] = stringNumberSquare
     }
     
-    // ajout du nombre avec "!" dans le tableau des nombres
+    // adding the number with "!" in the numbers table
     func addFactorial(){
         let stringNumberf = stringNumbers.last!
         var stringNumberFactorial = stringNumberf
         stringNumberFactorial = stringNumberFactorial + "!"
         stringNumbers[stringNumbers.count-1] = stringNumberFactorial
     }
-    // ajout factorielle
+    // factorial addition
     func factorial(a: Float) -> Float {
         let n = a
         if(n == 0){
@@ -62,7 +62,7 @@ class Calculator {
         }
     }
 
-// concaténation des chiffres pour en faire des nombres
+// concatenate numbers to make numbers
     func addNumber(_ newNumber: Int) {
         if let stringNumber = stringNumbers.last {
             var stringNumberMutable = stringNumber
@@ -70,14 +70,14 @@ class Calculator {
             stringNumbers[stringNumbers.count-1] = stringNumberMutable
         }
     }
-// Ajout de l'opérateur au tableau des opérateurs
+// Add operator to operator array
     func addOperator(_ newOperator: String) {
         print("addOperator")
 //        if newOperatorMutable == "x!" { newOperatorMutable = "!"}
         operators.append(newOperator)
         stringNumbers.append("")
     }
-//  on ne calcule que des + et - puisque l'expression est réduite à ces opérations la.
+//  we only calculate + and - since the expression is reduced to these operations
     func calculateTotal() -> Float {
         var total: Float = 0
         for (i, stringNumber) in stringNumbers.enumerated() {
@@ -93,7 +93,7 @@ class Calculator {
         return total
     }
     
-    // formatte et calcul le total
+    // format and calculate the total
     func getTotal() -> String {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
@@ -104,12 +104,12 @@ class Calculator {
         return String(total!)
     }
     
-    // priorités on reduit l'expression en remplaçant les opérations X et /
-    // en partant de la gauche. on remplace le résultat dans le tableau des nombres[]
-    // on supprime les opérateurs /  et * du tableau tmpOperator[]
+    // priorities we reduce the expression by replacing the operations X and /
+    // from the left. replace the result in the number table
+    // you remove the operators / and * from the tmpOperator array
     func reduceExpression() {
-        reduceSquare()      // cacul réduit le carré à son résultat
-        reduceFactorial()   // réduit la factorielle à son résultat
+        reduceSquare()      // calculation reduces the square to its result
+        reduceFactorial()   // reduces the factorial to its result
         // opération  *  et X
         var tmpStringNumbers = stringNumbers
         var tmpOperators = operators
@@ -134,7 +134,7 @@ class Calculator {
             operators = tmpOperators
         }
     }
-     // cacul réduit le carré à son résultat
+     // we reduce the square to its result
      func reduceSquare() {
         var tmpNumbersToSquare = stringNumbers
         var firstSquareIndex = tmpNumbersToSquare.firstIndex { $0.contains("²")}
@@ -146,13 +146,13 @@ class Calculator {
         stringNumbers = tmpNumbersToSquare
     }
     
-    // touche clear => réinitialisation des tableaux de nombres et d'opérateurs
+    // clear key => reset tables of numbers and operators
     func clear() {
         stringNumbers = [String()]
         operators = ["+"]
     }
     
-    // réduit la factorielle à son résultat
+    // reduces the factorial to its result
     func reduceFactorial(){
             var tmpNumbersToFactorial = stringNumbers
             var firstFactorialIndex = tmpNumbersToFactorial.firstIndex { $0.contains("!")}

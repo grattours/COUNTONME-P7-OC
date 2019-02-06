@@ -7,6 +7,7 @@
 //  conversion Swift 4.2 de l'original puis Swift5
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -17,8 +18,8 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     let calculator = Calculator()
-    var isExpressionCorrect: Bool { return checkExpression() }  // vérif quand = cliqué
-    var canAddOperator: Bool { return checkOperator() } // vérif quand opérateur cliqué
+    var isExpressionCorrect: Bool { return checkExpression() }  // check when = clicked
+    var canAddOperator: Bool { return checkOperator() } // check when operator clicked
     var isNumberPositveInteger: Bool { return checkPositiveInteger() }
     
     // MARK: - Action
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
         textView.text = ""
         calculator.stringNumbers = [String()]
     }
-// action si un bouton de chiffre est cliqué
+    // action if a number button is clicked
     @IBAction func tappedNumberButton(_ sender: UIButton) {
             for (i, numberButton) in numberButtons.enumerated() {
                 if sender == numberButton {
@@ -35,7 +36,7 @@ class ViewController: UIViewController {
                 }
             }
     }
- // action si un bouton opérateur est cliqué + -titleLabel
+    // action if an operator button is clicked + -titleLabel
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
         if isExpressionCorrect {
             if canAddOperator {
@@ -45,7 +46,7 @@ class ViewController: UIViewController {
         }
     }
     
-// action si le signe = est sélectionné
+    // action if the = sign is selected
     @IBAction func equal() {
         if isExpressionCorrect {
             let total = calculator.getTotal()
@@ -53,7 +54,7 @@ class ViewController: UIViewController {
         }
     }
     
-// ajout des nombres décimaux
+    // adding decimals
     @IBAction func tappedPointButton(_ sender: UIButton) {
         calculator.addPoint()
         updateDisplay()
@@ -77,7 +78,13 @@ class ViewController: UIViewController {
 
     }
 
-    // pour les factorielles, entier possitif demandé sinon alerte
+    @IBAction func speechBtn(_ sender: UIButton) {
+        var lang: String = "fr-FR"
+        lang = "fr-FR"
+        self.readMe(myText: textView.text! , myLang: lang)
+    }
+
+    // for factorials, positive integer otherwise required
     func checkPositiveInteger() -> Bool {
          if let stringNumber = calculator.stringNumbers.last {
             let numberFact = Float(stringNumber)
@@ -88,7 +95,7 @@ class ViewController: UIViewController {
         return true
     }
     
-// renvoie si l'expression est correct ou pas
+// returns if the expression is correct or not
 // isExpressionCorrect
     fileprivate func checkExpression() -> Bool {
         if let stringNumber = calculator.stringNumbers.last {
@@ -105,7 +112,7 @@ class ViewController: UIViewController {
 
                 }
                 return false
-            } else { // non vide et division par zéro
+            } else { // non-empty and division by zero
                 if stringNumber == "0" && calculator.operators.last == "÷" {
                     let alertVC = UIAlertController(title: "Erreur !", message: "Division par zéro impossible !", preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -117,7 +124,7 @@ class ViewController: UIViewController {
         return true
     }
  
-    // valide si operateur est OK
+    // valid if operator is OK
     fileprivate func checkOperator() -> Bool {
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
@@ -130,9 +137,18 @@ class ViewController: UIViewController {
         return true
     }
     
-    // affiche l'expression
+    // show the expression
     func updateDisplay() {
         textView.text = calculator.getTextToDisplay()
     }
-
+    
+    func readMe( myText: String , myLang : String) {
+        let utterance = AVSpeechUtterance(string: myText )
+        utterance.voice = AVSpeechSynthesisVoice(language: myLang)
+        utterance.rate = 0.5
+        
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterance)
+    }
+    
 }
