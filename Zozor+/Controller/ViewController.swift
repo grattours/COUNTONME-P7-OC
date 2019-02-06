@@ -44,20 +44,18 @@ class ViewController: UIViewController {
         
 //        print("tag du bouton : \(sender.tag)")
     }
- // action si un bouton opérateur est cliqué + -
+ // action si un bouton opérateur est cliqué + -titleLabel
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
-        print("operateur \(sender.tag)")
+        print("operateur \(String(describing: sender.titleLabel!.text))")
         if isExpressionCorrect {
-        if canAddOperator {
-           print("canAddOperator")
-//            calculator.operators.append(sender.titleLabel!.text ?? "")
-//            calculator.stringNumbers.append("")
-            calculator.addOperator(sender.titleLabel!.text ?? "")
-        }
+            if canAddOperator {
+                print("canAddOperator")
+                calculator.addOperator(sender.titleLabel!.text ?? "")
+            }
         updateDisplay()
         }
-        
     }
+    
 // action si le signe = est sélectionné
     @IBAction func equal() {
         if isExpressionCorrect {
@@ -74,8 +72,25 @@ class ViewController: UIViewController {
         calculator.addPoint()
         updateDisplay()
     }
-
-// renvoie si l'expression est correct ou pas
+    
+    // carré
+    @IBAction func tappedSquareButton(_ sender: UIButton) {
+        print("bouton square")
+        calculator.addSquare()
+        updateDisplay()
+    }
+// choix d'une opération unitaire factorielle ou carré
+//    @IBAction func unaryOperationsChoosen(_ sender: UIButton) {
+//        print("bouton X! ou x²")
+//        let unitaryOperation = sender.titleLabel!.text
+//        if unitaryOperation == "x!" {
+//            calculator.factorial()
+//        } else {
+//            calculator.square()
+//        }
+//    }
+    
+    // renvoie si l'expression est correct ou pas
 // isExpressionCorrect
     fileprivate func checkExpression() -> Bool {
         print("checkExpression")
@@ -86,9 +101,13 @@ class ViewController: UIViewController {
                     alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
                 } else {
-                    let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
-                    alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alertVC, animated: true, completion: nil)
+//                    if calculator.operators.last != "!" && calculator.operators.last != "²"{
+                        print("calculator.operators.last: \(String(describing: calculator.operators.last))")
+                        let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
+                        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        self.present(alertVC, animated: true, completion: nil)
+//                    }
+
                 }
                 return false
             } else { // non vide et division par zéro
@@ -100,6 +119,12 @@ class ViewController: UIViewController {
                     self.present(alertVC, animated: true, completion: nil)
                     return false
                 }
+//                if calculator.operators.last == "!" {
+//                    print ("facto CheckExpression")
+//                }
+//                if calculator.operators.last == "²" {
+//                    print ("square CheckExpression")
+//                }
             }
         }
         return true

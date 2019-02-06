@@ -41,8 +41,22 @@ class Calculator {
         var stringNumberDecimal = stringNumber
         stringNumberDecimal = stringNumberDecimal! + "."
         stringNumbers[stringNumbers.count-1] = stringNumberDecimal!
-        print("ajout point")
+//        print("ajout point")
         print(stringNumbers)
+    }
+    
+    func addSquare() {
+        let stringNumber = stringNumbers.last!
+        var stringNumberSquare = stringNumber
+        stringNumberSquare = stringNumberSquare + "²"
+        stringNumbers[stringNumbers.count-1] = stringNumberSquare
+        print("ajout square")
+        print(stringNumbers)
+        let num = Float(stringNumber)
+        print("carré \(powf(num!, 2))")
+        // stringNumbers.last = String(num)
+        //stringNumber = String(num)
+
     }
 //
 //  Add an entry to a number
@@ -62,10 +76,27 @@ class Calculator {
         }
     }
     
+//    func factorial(){
+//        print("factorial")
+//        let stringNumber = stringNumbers.last
+//        var stringNumberFact = stringNumber
+//        // calcul facto
+//        stringNumberFact = stringNumberFact! + "."
+//        var fact: Float = 1
+//        for index in stride(from:1, to: Float(stringNumberFact!) + Float(1), by:1){
+//            fact = fact * index
+//        }
+//        stringNumbers[stringNumbers.count-1] = stringNumberFact!
+//        print("ajout Facto")
+//        print(stringNumbers)
+//    }
+    
     func addOperator(_ newOperator: String) {
         var newOperatorMutable = newOperator
-        if newOperatorMutable == "÷" { newOperatorMutable = "÷"}
+//        if newOperatorMutable == "x!" { newOperatorMutable = "!"}
+        if newOperatorMutable == "x²" { newOperatorMutable = "²"}
         operators.append(newOperatorMutable)
+//          operators.append(newOperator)
         stringNumbers.append("")
     }
 //  on ne calcule que des + et - puisque l'expression est réduite à ces opérations la.
@@ -114,22 +145,24 @@ class Calculator {
     // en partant de la gauche. on remplace le résultat dans le tableau des nombres[]
     // on supprime les opérateurs /  et * du tableau tmpOperator[]
     fileprivate func reduceExpression() {
+//        print("nombres et opérateurs d'origine : ")
+//        print(tmpStringNumbers)
+//        print(tmpOperators)
         var tmpStringNumbers = stringNumbers
         var tmpOperators = operators
-        print("nombres et opérateurs d'origine : ")
-        print(tmpStringNumbers)
-        print(tmpOperators)
+        reduceSquare()
+// opération  *  et X
         while tmpOperators.contains("x") || tmpOperators.contains("÷") {
 //            print("opération x ou ÷")
             let indexTmpOperator = tmpOperators.firstIndex (where: { $0 == "x" || $0 == "÷"})
             let tmpOperator = tmpOperators[indexTmpOperator!]
             let tmpOperande1 = Float(tmpStringNumbers[indexTmpOperator! - 1])
             let tmpOperande2 = Float(tmpStringNumbers[indexTmpOperator!])
-            print("tmpOperande1")
+//            print("tmpOperande1")
             print(tmpOperande1!)
-            print("tmpOperande2")
+//            print("tmpOperande2")
             print(tmpOperande2!)
-            print("opération à remplacer :")
+//            print("opération à remplacer :")
             
             // print(tmpStringNumbers[indexTmpOperator!])
             // print("resultat à remplacer :")
@@ -141,20 +174,36 @@ class Calculator {
                 tmpResult = Float(tmpOperande1! / tmpOperande2!)
                 // print("div: \(tmpResult)")
             }
-            print("\(tmpOperande1!)\(tmpOperator)\(tmpOperande2!) => \(tmpResult)")
+//            print("\(tmpOperande1!)\(tmpOperator)\(tmpOperande2!) => \(tmpResult)")
             // print("Result =\(tmpResult)")
             tmpOperators.remove(at: indexTmpOperator!)
             
             tmpStringNumbers[indexTmpOperator! - 1] = "\(tmpResult)"
             tmpStringNumbers.remove(at: indexTmpOperator!)
             // print("opération après reduction)\(tmpOperators)")
-            print("nombres et opérateurs reduit : ")
-            print(tmpStringNumbers)
-            print(tmpOperators)
+//            print("nombres et opérateurs reduit : ")
+//            print(tmpStringNumbers)
+//            print(tmpOperators)
             stringNumbers = tmpStringNumbers
             operators = tmpOperators
         }
     }
+    
+    fileprivate func reduceSquare() {
+        var tmpNumbersToSquare = stringNumbers
+        var firstSquareIndex = tmpNumbersToSquare.firstIndex { $0.contains("²")}
+        print("firstSquareIndex \(String(describing: firstSquareIndex))")
+        while firstSquareIndex != nil {
+            let tmpSquaredNumber = powf(Float(tmpNumbersToSquare[firstSquareIndex!].dropLast(1))!, 2)
+            print("tmpNumbersToSquare avant \(tmpNumbersToSquare)")
+            tmpNumbersToSquare[firstSquareIndex!] = "\(tmpSquaredNumber)"
+            print("tmpNumbersToSquare après \(tmpNumbersToSquare)")
+            firstSquareIndex = tmpNumbersToSquare.firstIndex { $0.contains("²")}
+        }
+        stringNumbers = tmpNumbersToSquare
+        print("stringNumbers reduceSquare \(stringNumbers)")
+    }
+    
     func clear() {
         stringNumbers = [String()]
         operators = ["+"]
