@@ -4,9 +4,7 @@
 //
 //  Created by Ambroise COLLON on 30/08/2016.
 //  Copyright © 2016 Ambroise Collon. All rights reserved.
-//  conversion Swift 4.2
-//  conversion Swift 5
-// 
+//  conversion Swift 4.2 de l'original puis Swift5
 
 import UIKit
 
@@ -21,35 +19,26 @@ class ViewController: UIViewController {
     let calculator = Calculator()
     var isExpressionCorrect: Bool { return checkExpression() }  // vérif quand = cliqué
     var canAddOperator: Bool { return checkOperator() } // vérif quand opérateur cliqué
-    // let point = "."
+    var isNumberPositveInteger: Bool { return checkPositiveInteger() }
     
     // MARK: - Action
     @IBAction func resetCalculation() {
         textView.text = ""
- //       print("resetCalulation")
         calculator.stringNumbers = [String()]
     }
 // action si un bouton de chiffre est cliqué
     @IBAction func tappedNumberButton(_ sender: UIButton) {
-//        print(numberButtons.count)
-        
             for (i, numberButton) in numberButtons.enumerated() {
                 if sender == numberButton {
-     //               print("indice i = \(i)")
                     calculator.addNumber(i)
                     updateDisplay()
                 }
             }
-            
-        
-//        print("tag du bouton : \(sender.tag)")
     }
  // action si un bouton opérateur est cliqué + -titleLabel
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
-        print("operateur \(String(describing: sender.titleLabel!.text))")
         if isExpressionCorrect {
             if canAddOperator {
-                print("canAddOperator")
                 calculator.addOperator(sender.titleLabel!.text ?? "")
             }
         updateDisplay()
@@ -61,39 +50,47 @@ class ViewController: UIViewController {
         if isExpressionCorrect {
             let total = calculator.getTotal()
             textView.text = textView.text + "=\(total)"
-//        let total = calculator.getTotal()
-//        textView.text = textView.text + "=\(total)"
         }
     }
     
 // ajout des nombres décimaux
     @IBAction func tappedPointButton(_ sender: UIButton) {
-        print("bouton point")
         calculator.addPoint()
         updateDisplay()
     }
     
     // carré
     @IBAction func tappedSquareButton(_ sender: UIButton) {
-        print("bouton square")
-        calculator.addSquare()
-        updateDisplay()
+            calculator.addSquare()
+            updateDisplay()
     }
-// choix d'une opération unitaire factorielle ou carré
-//    @IBAction func unaryOperationsChoosen(_ sender: UIButton) {
-//        print("bouton X! ou x²")
-//        let unitaryOperation = sender.titleLabel!.text
-//        if unitaryOperation == "x!" {
-//            calculator.factorial()
-//        } else {
-//            calculator.square()
-//        }
-//    }
+    // Factoriel
+    @IBAction func tappedFactorialButton(_ sender: UIButton) {
+        if isNumberPositveInteger {
+            calculator.addFactorial()
+            updateDisplay()
+        } else {
+            let alertVC = UIAlertController(title: "Incorrect", message: "Factoriel - entier positif seulement", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        }
+
+    }
+
+    // pour les factorielles, entier possitif demandé sinon alerte
+    func checkPositiveInteger() -> Bool {
+         if let stringNumber = calculator.stringNumbers.last {
+            let numberFact = Float(stringNumber)
+            if floorf(numberFact!) != numberFact || ((numberFact?.isLessThanOrEqualTo(0))!) {
+                return false
+            }
+        }
+        return true
+    }
     
-    // renvoie si l'expression est correct ou pas
+// renvoie si l'expression est correct ou pas
 // isExpressionCorrect
     fileprivate func checkExpression() -> Bool {
-        print("checkExpression")
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
                 if calculator.stringNumbers.count == 1 {
@@ -101,8 +98,6 @@ class ViewController: UIViewController {
                     alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
                 } else {
-//                    if calculator.operators.last != "!" && calculator.operators.last != "²"{
-                        print("calculator.operators.last: \(String(describing: calculator.operators.last))")
                         let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
                         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         self.present(alertVC, animated: true, completion: nil)
@@ -111,27 +106,19 @@ class ViewController: UIViewController {
                 }
                 return false
             } else { // non vide et division par zéro
-                print("Division par zéro ?")
                 if stringNumber == "0" && calculator.operators.last == "÷" {
-                    print ("Divide by zero")
                     let alertVC = UIAlertController(title: "Erreur !", message: "Division par zéro impossible !", preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
                     return false
                 }
-//                if calculator.operators.last == "!" {
-//                    print ("facto CheckExpression")
-//                }
-//                if calculator.operators.last == "²" {
-//                    print ("square CheckExpression")
-//                }
             }
         }
         return true
     }
-   
+ 
+    // valide si operateur est OK
     fileprivate func checkOperator() -> Bool {
-        print("checkOperator")
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
                 let alertVC = UIAlertController(title: "Zéro!", message: "Expression incorrecte !", preferredStyle: .alert)
@@ -143,6 +130,7 @@ class ViewController: UIViewController {
         return true
     }
     
+    // affiche l'expression
     func updateDisplay() {
         textView.text = calculator.getTextToDisplay()
     }
