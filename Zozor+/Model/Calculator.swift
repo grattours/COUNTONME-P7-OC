@@ -72,7 +72,7 @@ class Calculator {
     }
 // Add operator to operator array
     func addOperator(_ newOperator: String) {
-        print("addOperator")
+        // print("addOperator")
 //        if newOperatorMutable == "x!" { newOperatorMutable = "!"}
         operators.append(newOperator)
         stringNumbers.append("")
@@ -100,7 +100,7 @@ class Calculator {
         formatter.maximumFractionDigits = 2
         reduceExpression()
         let total = formatter.string(from: NSNumber(value: calculateTotal()))
-        print("total getTotal = \(String(describing: total))")
+        // print("total getTotal = \(String(describing: total))")
         return String(total!)
     }
     
@@ -118,8 +118,8 @@ class Calculator {
             let tmpOperator = tmpOperators[indexTmpOperator!]
             let tmpOperande1 = Float(tmpStringNumbers[indexTmpOperator! - 1])
             let tmpOperande2 = Float(tmpStringNumbers[indexTmpOperator!])
-            print(tmpOperande1!)
-            print(tmpOperande2!)
+//            print(tmpOperande1!)
+//            print(tmpOperande2!)
             var tmpResult: Float = 0
             if tmpOperator == "x" {
                 tmpResult = Float(tmpOperande1! * tmpOperande2!)

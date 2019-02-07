@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     var isExpressionCorrect: Bool { return checkExpression() }  // check when = clicked
     var canAddOperator: Bool { return checkOperator() } // check when operator clicked
     var isNumberPositveInteger: Bool { return checkPositiveInteger() }
-    
+    var isLastOperatorUnitary: Bool { return checkLasOperatorUnitary()}
     // MARK: - Action
     @IBAction func resetCalculation() {
         textView.text = ""
@@ -62,20 +62,35 @@ class ViewController: UIViewController {
     
     // carré
     @IBAction func tappedSquareButton(_ sender: UIButton) {
+        if isExpressionCorrect && isLastOperatorUnitary {
             calculator.addSquare()
             updateDisplay()
-    }
-    // Factoriel
-    @IBAction func tappedFactorialButton(_ sender: UIButton) {
-        if isNumberPositveInteger {
-            calculator.addFactorial()
-            updateDisplay()
         } else {
-            let alertVC = UIAlertController(title: "Incorrect", message: "Factoriel - entier positif seulement", preferredStyle: .alert)
+            let alertVC = UIAlertController(title: "pas de çà chez moi", message: "pas deux fois un opérateur !", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alertVC, animated: true, completion: nil)
         }
-
+    }
+    // Factoriel
+    @IBAction func tappedFactorialButton(_ sender: UIButton) {
+        if isExpressionCorrect && isLastOperatorUnitary {
+//            print("facto")
+//            print(isLastOperatorUnitary)
+            // guard let name = person["name"] else { return }
+            if isNumberPositveInteger {
+                calculator.addFactorial()
+                updateDisplay()
+            } else {
+                let alertVC = UIAlertController(title: "Incorrect", message: "Factoriel - entier positif seulement", preferredStyle: .alert)
+                alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alertVC, animated: true, completion: nil)
+            }
+        } else {
+                let alertVC = UIAlertController(title: "pas après la factorielle", message: "essayer autre chose !", preferredStyle: .alert)
+                alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alertVC, animated: true, completion: nil)
+                }
+        
     }
 
     @IBAction func speechBtn(_ sender: UIButton) {
@@ -94,6 +109,16 @@ class ViewController: UIViewController {
         }
         return true
     }
+  
+    func checkLasOperatorUnitary() -> Bool {
+        if let stringNumber = calculator.stringNumbers.last {
+           // print("last \(stringNumber)")
+            if stringNumber.last == "²" || stringNumber.last == "!" {
+                return false
+            }
+        }
+        return true
+    }
     
 // returns if the expression is correct or not
 // isExpressionCorrect
@@ -101,11 +126,11 @@ class ViewController: UIViewController {
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
                 if calculator.stringNumbers.count == 1 {
-                    let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
+                    let alertVC = UIAlertController(title: "pas possible!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
                 } else {
-                        let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
+                        let alertVC = UIAlertController(title: "Pas bon!", message: "Entrez une expression correcte !", preferredStyle: .alert)
                         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         self.present(alertVC, animated: true, completion: nil)
 //                    }
@@ -128,7 +153,7 @@ class ViewController: UIViewController {
     fileprivate func checkOperator() -> Bool {
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
-                let alertVC = UIAlertController(title: "Zéro!", message: "Expression incorrecte !", preferredStyle: .alert)
+                let alertVC = UIAlertController(title: "Non non!", message: "Expression incorrecte !", preferredStyle: .alert)
                 alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alertVC, animated: true, completion: nil)
                 return false
