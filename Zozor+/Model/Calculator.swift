@@ -52,7 +52,7 @@ class Calculator {
         stringNumberFactorial = stringNumberFactorial + "!"
         stringNumbers[stringNumbers.count-1] = stringNumberFactorial
     }
-    // factorial addition
+    // factorial 
     func factorial(a: Float) -> Float {
         let n = a
         if(n == 0){
@@ -72,8 +72,6 @@ class Calculator {
     }
 // Add operator to operator array
     func addOperator(_ newOperator: String) {
-        // print("addOperator")
-//        if newOperatorMutable == "x!" { newOperatorMutable = "!"}
         operators.append(newOperator)
         stringNumbers.append("")
     }
@@ -118,8 +116,6 @@ class Calculator {
             let tmpOperator = tmpOperators[indexTmpOperator!]
             let tmpOperande1 = Float(tmpStringNumbers[indexTmpOperator! - 1])
             let tmpOperande2 = Float(tmpStringNumbers[indexTmpOperator!])
-//            print(tmpOperande1!)
-//            print(tmpOperande2!)
             var tmpResult: Float = 0
             if tmpOperator == "x" {
                 tmpResult = Float(tmpOperande1! * tmpOperande2!)
@@ -161,8 +157,8 @@ class Calculator {
                     factorial(a: Float(tmpNumbersToFactorial[firstFactorialIndex!].dropLast(1))!)
                 tmpNumbersToFactorial[firstFactorialIndex!] = "\(tmpFactorialNumber)"
                 firstFactorialIndex = tmpNumbersToFactorial.firstIndex { $0.contains("!")}
-            } //fin while
+            }
             stringNumbers = tmpNumbersToFactorial
-  
-    } //fin reduceFactorial
+    }
+    
 }

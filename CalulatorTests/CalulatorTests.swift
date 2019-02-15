@@ -34,6 +34,59 @@ class CalulatorTests: XCTestCase {
         XCTAssertEqual(calculator.calculateTotal(), 3)
     }
     
+    func testGivenFirstNumberIsTwelve_WhenMutliplyingWithNumberTwo_ThenTotalIsTwentyFour() {
+        calculator.addNumber(12)
+        
+        calculator.addOperator("x")
+        calculator.addNumber(2)
+        
+        XCTAssertEqual(calculator.getTotal(), "24")
+    }
+    
+    func testGivenFirstNumberIsFivetenn_WhenDividingWithNumberThree_ThenTotalIsFive() {
+        calculator.addNumber(15)
+        
+        calculator.addOperator("÷")
+        calculator.addNumber(3)
+        
+        XCTAssertEqual(calculator.getTotal(), "5")
+    }
+    
+    func testGivenNumberIsFive_WhenFactoring_ThenTotalIs120() {
+        calculator.addNumber(5)
+        
+        calculator.addFactorial()
+        
+        XCTAssertEqual(calculator.factorial(a: 5), 120)
+        XCTAssertEqual(calculator.getTotal(), "120")
+    }
+    
+    func testGivenNumberIsZero_WhenFactoring_ThenTotalIsOne() {
+        calculator.addNumber(0)
+        
+        calculator.addFactorial()
+        
+        XCTAssertEqual(calculator.factorial(a: 0), 1)
+        XCTAssertEqual(calculator.getTotal(), "1")
+    }
+    
+    func testGivenNumberIsOne_WhenFactoring_ThenTotalIsOne() {
+        calculator.addNumber(1)
+        
+        calculator.addFactorial()
+        
+        XCTAssertEqual(calculator.factorial(a: 1), 1)
+        XCTAssertEqual(calculator.getTotal(), "1")
+    }
+    
+    func testGivenNumberIsSix_WhenSquaring_ThenTotalIs36() {
+        calculator.addNumber(6)
+        
+        calculator.addSquare()
+        
+        XCTAssertEqual(calculator.getTotal(), "36")
+    }
+    
     func testGivenExpressionEnded_CalculatingTotal_ThenExpressionIsCleared() {
         calculator.addNumber(12)
         calculator.addOperator("-")
@@ -78,4 +131,21 @@ class CalulatorTests: XCTestCase {
         
         XCTAssertEqual(calculator.getTextToDisplay(), "34+12-15+7")
     }
+    
+    func testGivenExpressionWijtPointIsEnded_WhenDisplayingExpression_ThenDisplayIsTheExpression() {
+        calculator.addNumber(8)
+        calculator.addPoint()
+        calculator.addNumber(3)
+        calculator.addOperator("+")
+        calculator.addNumber(1)
+        calculator.addPoint()
+        calculator.addNumber(9)
+        
+        XCTAssertEqual(calculator.getTextToDisplay(), "8.3+1.9")
+        
+        let result = calculator.getTotal()
+        XCTAssertEqual(result, "10.2")
+        
+    }
+    
 }
