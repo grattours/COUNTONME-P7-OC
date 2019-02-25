@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     var canAddOperator: Bool { return checkOperator() } // check when operator clicked
     var isNumberPositveInteger: Bool { return checkPositiveInteger() }
     var isLastOperatorUnitary: Bool { return checkLasOperatorUnitary()}
+    var canAddNumber: Bool { return checkNumber() } // check when number cliked
+    
     // MARK: - Action
     @IBAction func resetCalculation() {
         textView.text = ""
@@ -29,13 +31,18 @@ class ViewController: UIViewController {
     }
     // action if a number button is clicked
     @IBAction func tappedNumberButton(_ sender: UIButton) {
+        if  canAddNumber {
             for (i, numberButton) in numberButtons.enumerated() {
                 if sender == numberButton {
                     calculator.addNumber(i)
                     updateDisplay()
                 }
             }
+        } else {
+             presentAlert("Erreur","Entrez un opérateur binaire ! ")
+        }
     }
+    
     // action if an operator button is clicked + -titleLabel
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
         if isExpressionCorrect {
@@ -50,7 +57,7 @@ class ViewController: UIViewController {
     @IBAction func equal() {
         if isExpressionCorrect {
             let total = calculator.getTotal()
-            print(total)
+            //print(total)
             textView.text = textView.text + "=\(total)"
         }
     }
@@ -63,7 +70,7 @@ class ViewController: UIViewController {
     
     // carré
     @IBAction func tappedSquareButton(_ sender: UIButton) {
-        if isExpressionCorrect && isLastOperatorUnitary {
+        if isExpressionCorrect && !isLastOperatorUnitary {
             calculator.addSquare()
             updateDisplay()
         } else {
@@ -72,7 +79,7 @@ class ViewController: UIViewController {
     }
     // Factoriel
     @IBAction func tappedFactorialButton(_ sender: UIButton) {
-        if isExpressionCorrect && isLastOperatorUnitary {
+        if isExpressionCorrect && !isLastOperatorUnitary {
             if isNumberPositveInteger {
                 calculator.addFactorial()
                 updateDisplay()
@@ -102,15 +109,24 @@ class ViewController: UIViewController {
         return true
     }
   
+//    func checkLasOperatorUnitary() -> Bool {
+//        if let stringNumber = calculator.stringNumbers.last {
+//            if stringNumber.last == "²" || stringNumber.last == "!" {
+//                return false
+//            }
+//        }
+//        return true
+//    }
     func checkLasOperatorUnitary() -> Bool {
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.last == "²" || stringNumber.last == "!" {
-                return false
+                return true
+            } else {
+                return  false
             }
         }
         return true
     }
-    
 // returns if the expression is correct or not
 // isExpressionCorrect
     fileprivate func checkExpression() -> Bool {
@@ -132,7 +148,7 @@ class ViewController: UIViewController {
         return true
     }
  
-    // valid if operator is OK
+    // valid if operator is OK as input
     fileprivate func checkOperator() -> Bool {
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
@@ -143,10 +159,31 @@ class ViewController: UIViewController {
         return true
     }
     
+    // valid if number  is OK as input
+    fileprivate func checkNumber() -> Bool {
+        print("checkNumber")
+        print(calculator.stringNumbers.last!)
+        print(isLastOperatorUnitary)
+        if !isLastOperatorUnitary {
+            return true
+        } else {
+            return false
+    //        presentAlert("Erreur","Entrez un opérateur binaire ! ")
+        }
+//        if let stringNumber = calculator.stringNumbers.last {
+//            if stringNumber.isEmpty {
+//                presentAlert("Non non !","Expression incorrecte ! ")
+//                return false
+//            }
+//        }
+        //return true
+    }
+    
+    
     // show the expression
     func updateDisplay() {
         textView.text = calculator.getTextToDisplay()
-        print(textView.text!)
+        //print(textView.text!)
     }
     
     func readMe( myText: String , myLang : String) {

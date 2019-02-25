@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zozor+/Controller/ViewController.swift"
-            timestampString = "571917958.799022"
+            timestampString = "572812253.799938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "checkExpression()"
             landmarkType = "7">
          </BreakpointContent>
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zozor+/Controller/ViewController.swift"
-            timestampString = "571917958.799365"
+            timestampString = "572812253.800514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "checkExpression()"
             landmarkType = "7">
          </BreakpointContent>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zozor+/Controller/ViewController.swift"
-            timestampString = "571917958.799575"
+            timestampString = "572812253.800774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "checkExpression()"
             landmarkType = "7">
          </BreakpointContent>
@@ -128,17 +128,27 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zozor+/Controller/ViewController.swift"
-            timestampString = "571917958.799765"
+            timestampString = "572812253.800999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "tappedFactorialButton(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
