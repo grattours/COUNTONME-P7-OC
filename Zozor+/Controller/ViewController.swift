@@ -57,7 +57,6 @@ class ViewController: UIViewController {
     @IBAction func equal() {
         if isExpressionCorrect {
             let total = calculator.getTotal()
-            //print(total)
             textView.text = textView.text + "=\(total)"
         }
     }
@@ -68,7 +67,7 @@ class ViewController: UIViewController {
         updateDisplay()
     }
     
-    // carré
+    // square
     @IBAction func tappedSquareButton(_ sender: UIButton) {
         if isExpressionCorrect && !isLastOperatorUnitary {
             calculator.addSquare()
@@ -91,7 +90,7 @@ class ViewController: UIViewController {
                 }
         
     }
-
+    // button action speech
     @IBAction func speechBtn(_ sender: UIButton) {
         var lang: String = "fr-FR"
         lang = "fr-FR"
@@ -109,14 +108,8 @@ class ViewController: UIViewController {
         return true
     }
   
-//    func checkLasOperatorUnitary() -> Bool {
-//        if let stringNumber = calculator.stringNumbers.last {
-//            if stringNumber.last == "²" || stringNumber.last == "!" {
-//                return false
-//            }
-//        }
-//        return true
-//    }
+// check if last operator is unitary
+// isLastOperatorUnitary
     func checkLasOperatorUnitary() -> Bool {
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.last == "²" || stringNumber.last == "!" {
@@ -149,6 +142,7 @@ class ViewController: UIViewController {
     }
  
     // valid if operator is OK as input
+    // canAddNumber
     fileprivate func checkOperator() -> Bool {
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
@@ -161,31 +155,19 @@ class ViewController: UIViewController {
     
     // valid if number  is OK as input
     fileprivate func checkNumber() -> Bool {
-        print("checkNumber")
-        print(calculator.stringNumbers.last!)
-        print(isLastOperatorUnitary)
         if !isLastOperatorUnitary {
             return true
         } else {
             return false
-    //        presentAlert("Erreur","Entrez un opérateur binaire ! ")
         }
-//        if let stringNumber = calculator.stringNumbers.last {
-//            if stringNumber.isEmpty {
-//                presentAlert("Non non !","Expression incorrecte ! ")
-//                return false
-//            }
-//        }
-        //return true
     }
-    
     
     // show the expression
     func updateDisplay() {
         textView.text = calculator.getTextToDisplay()
-        //print(textView.text!)
     }
     
+    // text to speech
     func readMe( myText: String , myLang : String) {
         let utterance = AVSpeechUtterance(string: myText )
         utterance.voice = AVSpeechSynthesisVoice(language: myLang)
@@ -195,6 +177,7 @@ class ViewController: UIViewController {
         synthesizer.speak(utterance)
     }
     
+    // same alerte with title and message as parameter
     private func presentAlert(_ title: String, _ message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))

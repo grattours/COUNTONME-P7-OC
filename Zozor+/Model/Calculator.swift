@@ -98,7 +98,6 @@ class Calculator {
         formatter.maximumFractionDigits = 2
         reduceExpression()
         let total = formatter.string(from: NSNumber(value: calculateTotal()))
-        // print("total getTotal = \(String(describing: total))")
         return String(total!)
     }
     
