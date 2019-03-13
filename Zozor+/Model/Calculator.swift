@@ -13,7 +13,7 @@ class Calculator {
     // MARK: - Properties
     var stringNumbers: [String] = [String()]
     var operators: [String] = ["+"]
-    var index = 0
+    // var index = 0
     let point = "."
 
     // reconstructs the text of the expression with numbers and operators
@@ -35,6 +35,7 @@ class Calculator {
         let stringNumber = stringNumbers.last
         var stringNumberDecimal = stringNumber
         stringNumberDecimal = stringNumberDecimal! + "."
+        if(stringNumberDecimal == ".") { stringNumberDecimal = "0."}
         stringNumbers[stringNumbers.count-1] = stringNumberDecimal!
     }
     // adding the number with "²" in the number table
@@ -62,7 +63,7 @@ class Calculator {
         }
     }
 
-// concatenate numbers to make numbers
+// concatenate numbers to make multi-digit
     func addNumber(_ newNumber: Int) {
         if let stringNumber = stringNumbers.last {
             var stringNumberMutable = stringNumber

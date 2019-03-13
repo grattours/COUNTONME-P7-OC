@@ -4,6 +4,7 @@
 //
 //  Created by Ambroise COLLON on 30/08/2016.
 //  Copyright © 2016 Ambroise Collon. All rights reserved.
+//  Reprise de l'app. Luc Derosne P7
 //  conversion Swift 4.2 de l'original puis Swift5
 
 import UIKit
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
     var isNumberPositveInteger: Bool { return checkPositiveInteger() }
     var isLastOperatorUnitary: Bool { return checkLasOperatorUnitary()}
     var canAddNumber: Bool { return checkNumber() } // check when number cliked
+    var isLastOperatorPoint : Bool { return checkLastPoint() } // check when point cliked
     
     // MARK: - Action
     @IBAction func resetCalculation() {
@@ -63,10 +65,13 @@ class ViewController: UIViewController {
     
     // adding decimals
     @IBAction func tappedPointButton(_ sender: UIButton) {
-        calculator.addPoint()
-        updateDisplay()
-    }
-    
+        if !isLastOperatorPoint {
+            calculator.addPoint()
+            updateDisplay()
+        }  else {
+            presentAlert("erreur point","pas deux points de suite !")
+        }
+     }
     // square
     @IBAction func tappedSquareButton(_ sender: UIButton) {
         if isExpressionCorrect && !isLastOperatorUnitary {
@@ -107,7 +112,18 @@ class ViewController: UIViewController {
         }
         return true
     }
-  
+// check if last operator is unitary
+// isLastOperatorUnitary
+    func checkLastPoint() -> Bool {
+        if let stringNumber = calculator.stringNumbers.last {
+            if stringNumber.contains( ".") {
+                return true
+            } else {
+                return  false
+            }
+        }
+        return true
+    }
 // check if last operator is unitary
 // isLastOperatorUnitary
     func checkLasOperatorUnitary() -> Bool {
@@ -132,12 +148,13 @@ class ViewController: UIViewController {
                 }
                 return false
             } else { // non-empty and division by zero
-                if stringNumber == "0" && calculator.operators.last == "÷" {
+                if Float(stringNumber) == 0 && calculator.operators.last == "÷" {
                     presentAlert("Erreur !", " Division par zéro impossible !")
                     return false
                 }
             }
         }
+
         return true
     }
  
