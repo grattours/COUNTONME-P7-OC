@@ -30,6 +30,7 @@ class ViewController: UIViewController {
     @IBAction func resetCalculation() {
         textView.text = ""
         calculator.stringNumbers = [String()]
+        calculator.operators = ["+"]
     }
     // action if a number button is clicked
     @IBAction func tappedNumberButton(_ sender: UIButton) {
@@ -78,7 +79,7 @@ class ViewController: UIViewController {
             calculator.addSquare()
             updateDisplay()
         } else {
-            presentAlert("erreur opérateur","pas deux fois un même opérteur !")
+            presentAlert("erreur opérateur","pas deux fois un même opérateur !")
         }
     }
     // Factoriel
@@ -87,7 +88,6 @@ class ViewController: UIViewController {
             if isNumberPositveInteger {
                 calculator.addFactorial()
                 updateDisplay()
-            } else {
             }
         } else {
             presentAlert("pas après la factorielle", "essayer autre chose !")
@@ -150,6 +150,7 @@ class ViewController: UIViewController {
             } else { // non-empty and division by zero
                 if Float(stringNumber) == 0 && calculator.operators.last == "÷" {
                     presentAlert("Erreur !", " Division par zéro impossible !")
+                    resetCalculation()
                     return false
                 }
             }
