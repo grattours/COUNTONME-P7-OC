@@ -132,7 +132,7 @@ class CalulatorTests: XCTestCase {
         XCTAssertEqual(calculator.getTextToDisplay(), "34+12-15+7")
     }
     
-    func testGivenExpressionWijtPointIsEnded_WhenDisplayingExpression_ThenDisplayIsTheExpression() {
+    func testGivenExpressionWithPointIsEnded_WhenDisplayingExpression_ThenDisplayIsTheExpression() {
         calculator.addNumber(8)
         calculator.addPoint()
         calculator.addNumber(3)
@@ -142,9 +142,8 @@ class CalulatorTests: XCTestCase {
         calculator.addNumber(9)
         
         XCTAssertEqual(calculator.getTextToDisplay(), "8.3+1.9")
-        
-        let result = calculator.getTotal()
-        XCTAssertEqual(result, "10.2")
+        XCTAssertEqual(calculator.calculateTotal(), 10.2)
+
         
     }
     
