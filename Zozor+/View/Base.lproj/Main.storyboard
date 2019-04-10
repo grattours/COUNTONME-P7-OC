@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.43"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="1+1=2" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="CT0-fb-Raf">
-                                <rect key="frame" x="15" y="44" width="384" height="305.66666666666669"/>
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="1+1=2" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="CT0-fb-Raf">
+                                <rect key="frame" x="15" y="20" width="384" height="203.66666666666666"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
@@ -32,7 +32,7 @@
                                 </variation>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aiF-me-Far">
-                                <rect key="frame" x="15" y="364.66666666666674" width="384" height="482.33333333333326"/>
+                                <rect key="frame" x="15" y="238.66666666666666" width="384" height="482.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GZQ-ZL-Chx">
                                         <rect key="frame" x="0.0" y="0.0" width="88.666666666666671" height="482.33333333333331"/>
@@ -49,7 +49,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKJ-lP-BeQ" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="98.333333333333314" width="88.666666666666671" height="88.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="98.333333333333343" width="88.666666666666671" height="88.666666666666657"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title="7">
@@ -60,7 +60,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86l-DO-J8m" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="196.99999999999994" width="88.666666666666671" height="88.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="197.00000000000003" width="88.666666666666671" height="88.333333333333343"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title="4">
@@ -71,7 +71,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uw-jf-qlX" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="295.33333333333331" width="88.666666666666671" height="88.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="295.33333333333337" width="88.666666666666671" height="88.666666666666686"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="6uw-jf-qlX" secondAttribute="height" id="QEB-V2-VW1"/>
@@ -90,7 +90,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgJ-QU-2gW" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="393.99999999999994" width="88.666666666666671" height="88.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="394" width="88.666666666666671" height="88.333333333333314"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title="0">
@@ -117,7 +117,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5iN-WA-tqI" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="98.333333333333314" width="88.333333333333329" height="88.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="98.333333333333343" width="88.333333333333329" height="88.666666666666657"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title="8">
@@ -128,7 +128,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p3X-cI-gqf" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="196.99999999999994" width="88.333333333333329" height="88.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="197.00000000000003" width="88.333333333333329" height="88.333333333333343"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title="5">
@@ -139,7 +139,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZA-hS-XZt" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="295.33333333333331" width="88.333333333333329" height="88.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="295.33333333333337" width="88.333333333333329" height="88.666666666666686"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="nZA-hS-XZt" secondAttribute="height" id="HEN-XS-atl"/>
@@ -158,7 +158,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhH-U6-ChX" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="393.99999999999994" width="88.333333333333329" height="88.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="394" width="88.333333333333329" height="88.333333333333314"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title="🔈">
@@ -185,7 +185,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57K-hd-XBz" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="98.333333333333314" width="88.666666666666671" height="88.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="98.333333333333343" width="88.666666666666671" height="88.666666666666657"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="9">
@@ -196,7 +196,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zx3-qU-jRo" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="196.99999999999994" width="88.666666666666671" height="88.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="197.00000000000003" width="88.666666666666671" height="88.333333333333343"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title="6">
@@ -207,7 +207,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdG-Q6-4Mj" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="295.33333333333331" width="88.666666666666671" height="88.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="295.33333333333337" width="88.666666666666671" height="88.666666666666686"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="fdG-Q6-4Mj" secondAttribute="height" id="KRe-cV-PEu"/>
@@ -226,7 +226,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFo-X0-H54" customClass="NumberButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="393.99999999999994" width="88.666666666666671" height="88.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="394" width="88.666666666666671" height="88.333333333333314"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title=".">
@@ -253,7 +253,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9t-JB-KHx" customClass="OperatorButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="98.333333333333314" width="88.333333333333329" height="88.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="98.333333333333343" width="88.333333333333329" height="88.666666666666657"/>
                                                 <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="u9t-JB-KHx" secondAttribute="height" id="EKV-rt-idL"/>
@@ -272,7 +272,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1md-mv-IxN" customClass="OperatorButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="196.99999999999994" width="88.333333333333329" height="88.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="197.00000000000003" width="88.333333333333329" height="88.333333333333343"/>
                                                 <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                                 <state key="normal" title="-">
@@ -283,7 +283,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piv-FT-wps" customClass="OperatorButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="295.33333333333331" width="88.333333333333329" height="88.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="295.33333333333337" width="88.333333333333329" height="88.666666666666686"/>
                                                 <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                                 <state key="normal" title="+">
@@ -294,7 +294,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9e-qZ-ZAT" customClass="OperatorButton" customModule="CountOnMe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="393.99999999999994" width="88.333333333333329" height="88.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="394" width="88.333333333333329" height="88.333333333333314"/>
                                                 <color key="backgroundColor" red="0.3921568627" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                                 <state key="normal" title="=">

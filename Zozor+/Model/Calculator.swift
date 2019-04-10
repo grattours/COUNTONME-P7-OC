@@ -14,7 +14,7 @@ class Calculator {
     var stringNumbers: [String] = [String()]
     var operators: [String] = ["+"]
     // var index = 0
-    let point = "."
+    // let point = "."
 
     // reconstructs the text of the expression with numbers and operators
     func getTextToDisplay() -> String {
