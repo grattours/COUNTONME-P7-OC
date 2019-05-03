@@ -22,10 +22,8 @@ class NumberButton: UIButton {
     }
     
     func setup() {
-// ronds
-//        layer.cornerRadius = frame.size.width / 2
-//        layer.masksToBounds = true
-// coins arrondis
+
+// round corners
         tintColor = UIColor.white
         
         backgroundColor = UIColor.lightGray

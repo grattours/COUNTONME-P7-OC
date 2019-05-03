@@ -8,198 +8,87 @@
 //  conversion Swift 4.2 de l'original puis Swift5
 
 import UIKit
-import AVFoundation
 
 class ViewController: UIViewController {
 
-    // MARK: - Outlets
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     @IBOutlet weak var operatorsButtons: UIButton!
     
-    // MARK: - Properties
     let calculator = Calculator()
-    var isExpressionCorrect: Bool { return checkExpression() }  // check when = clicked
-    var canAddOperator: Bool { return checkOperator() } // check when operator clicked
-    var isNumberPositveInteger: Bool { return checkPositiveInteger() }
-    var isLastOperatorUnitary: Bool { return checkLasOperatorUnitary()}
-    var canAddNumber: Bool { return checkNumber() } // check when number cliked
-    var isLastOperatorPoint : Bool { return checkLastPoint() } // check when point cliked
+
+    // when the view is loaded
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setObservatoryNotifications()
+    }
     
-    // MARK: - Action
-    @IBAction func resetCalculation() {
+    @IBAction func resetButton() {
         textView.text = ""
-        calculator.stringNumbers = [String()]
-        calculator.operators = ["+"]
+        calculator.resetCalculation()
     }
     // action if a number button is clicked
     @IBAction func tappedNumberButton(_ sender: UIButton) {
-        if  canAddNumber {
             for (i, numberButton) in numberButtons.enumerated() {
                 if sender == numberButton {
                     calculator.addNumber(i)
                     updateDisplay()
                 }
             }
-        } else {
-             presentAlert("Erreur","Entrez un opérateur binaire ! ")
-        }
     }
-    
     // action if an operator button is clicked + -titleLabel
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
-        if isExpressionCorrect {
-            if canAddOperator {
-                calculator.addOperator(sender.titleLabel!.text ?? "")
-            }
+        guard let operat = sender.titleLabel?.text else { return }
+        if calculator.isExpressionCorrect {
+                calculator.addOperator(operat)
         updateDisplay()
         }
     }
-    
     // action if the = sign is selected
     @IBAction func equal() {
-        if isExpressionCorrect {
+        if calculator.isExpressionCorrect {
             let total = calculator.getTotal()
             textView.text = textView.text + "=\(total)"
         }
     }
-    
-    // adding decimals
-    @IBAction func tappedPointButton(_ sender: UIButton) {
-        if !isLastOperatorPoint {
-            calculator.addPoint()
-            updateDisplay()
-        }  else {
-            presentAlert("erreur point","pas deux points de suite !")
-        }
-     }
-    // square
-    @IBAction func tappedSquareButton(_ sender: UIButton) {
-        if isExpressionCorrect && !isLastOperatorUnitary {
-            calculator.addSquare()
-            updateDisplay()
-        } else {
-            presentAlert("erreur opérateur","pas deux fois un même opérateur !")
-        }
-    }
-    // Factoriel
-    @IBAction func tappedFactorialButton(_ sender: UIButton) {
-        if isExpressionCorrect && !isLastOperatorUnitary {
-            if isNumberPositveInteger {
-                calculator.addFactorial()
-                updateDisplay()
-            }
-        } else {
-            presentAlert("pas après la factorielle", "essayer autre chose !")
 
-                }
-        
-    }
-    // button action speech
-    @IBAction func speechBtn(_ sender: UIButton) {
-        var lang: String = "fr-FR"
-        lang = "fr-FR"
-        self.readMe(myText: textView.text! , myLang: lang)
-    }
-
-    // for factorials, positive integer otherwise required
-    func checkPositiveInteger() -> Bool {
-         if let stringNumber = calculator.stringNumbers.last {
-            let numberFact = Float(stringNumber)
-            if floorf(numberFact!) != numberFact || ((numberFact?.isLessThanOrEqualTo(0))!) {
-                return false
-            }
-        }
-        return true
-    }
-// check if last operator is unitary
-// isLastOperatorUnitary
-    func checkLastPoint() -> Bool {
-        if let stringNumber = calculator.stringNumbers.last {
-            if stringNumber.contains( ".") {
-                return true
-            } else {
-                return  false
-            }
-        }
-        return true
-    }
-// check if last operator is unitary
-// isLastOperatorUnitary
-    func checkLasOperatorUnitary() -> Bool {
-        if let stringNumber = calculator.stringNumbers.last {
-            if stringNumber.last == "²" || stringNumber.last == "!" {
-                return true
-            } else {
-                return  false
-            }
-        }
-        return true
-    }
-// returns if the expression is correct or not
-// isExpressionCorrect
-    fileprivate func checkExpression() -> Bool {
-        if let stringNumber = calculator.stringNumbers.last {
-            if stringNumber.isEmpty {
-                if calculator.stringNumbers.count == 1 {
-                    presentAlert("pas possible!", "Démarrez un nouveau calcul !")
-                } else {
-                    presentAlert(" Pas bon !", "Entrez une expression correcte !")
-                }
-                return false
-            } else { // non-empty and division by zero
-                if Float(stringNumber) == 0 && calculator.operators.last == "÷" {
-                    presentAlert("Erreur !", " Division par zéro impossible !")
-                    resetCalculation()
-                    return false
-                }
-            }
-        }
-
-        return true
-    }
- 
-    // valid if operator is OK as input
-    // canAddNumber
-    fileprivate func checkOperator() -> Bool {
-        if let stringNumber = calculator.stringNumbers.last {
-            if stringNumber.isEmpty {
-                presentAlert("Non non !","Expression incorrecte ! ")
-                return false
-            }
-        }
-        return true
-    }
-    
-    // valid if number  is OK as input
-    fileprivate func checkNumber() -> Bool {
-        if !isLastOperatorUnitary {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     // show the expression
     func updateDisplay() {
         textView.text = calculator.getTextToDisplay()
     }
     
-    // text to speech
-    func readMe( myText: String , myLang : String) {
-        let utterance = AVSpeechUtterance(string: myText )
-        utterance.voice = AVSpeechSynthesisVoice(language: myLang)
-        utterance.rate = 0.5
-        
-        let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(utterance)
+    // Observatory of notifications for alerts    
+    func setObservatoryNotifications() {
+        // listen to notifications
+        let errorNotif01 = Notification.Name(rawValue: "StartWithNewCalculation")
+        NotificationCenter.default.addObserver(self, selector: #selector(AlertFromNotif(_:)), name: errorNotif01, object: nil)
+        let errorNotif02 = Notification.Name(rawValue: "EnterCorrectExpression")
+        NotificationCenter.default.addObserver(self, selector: #selector(AlertFromNotif(_:)), name: errorNotif02, object: nil)
+        let errorNotif03 = Notification.Name(rawValue: "Nodivisionbyzero")
+        NotificationCenter.default.addObserver(self, selector: #selector(AlertFromNotif(_:)), name: errorNotif03, object: nil)
     }
-    
+
     // same alerte with title and message as parameter
-    private func presentAlert(_ title: String, _ message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    func presentAlert(_ message: String) {
+        let alertVC = UIAlertController(title: "Erreur", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
     
+    @objc func AlertFromNotif(_ notif:Notification)  {
+        let row = notif.name.rawValue
+        switch row {
+        case "StartWithNewCalculation":
+            presentAlert("Commencez un nouveau calcul")
+        case "EnterCorrectExpression":
+            presentAlert("Entrez une expression correcte")
+        case "Nodivisionbyzero":
+            presentAlert("Pas de division par zéro")
+        default:
+            break
+        }
+    }
+    
 }
+
+

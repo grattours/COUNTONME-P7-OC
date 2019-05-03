@@ -22,17 +22,9 @@ class OperatorButton: UIButton {
     }
     
     func setup() {
-        // ronds
-        //        layer.cornerRadius = frame.size.width / 2
-        //        layer.masksToBounds = true
-        // coins arrondis
-        // tintColor = UIColor.white
-//        backgroundColor = UIColor.lightGray
         titleLabel?.textColor = .white
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)
-        
         layer.cornerRadius = 10
-//        layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowOffset = CGSize(width: 3, height: 3)
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 3
